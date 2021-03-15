@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F6698E71-FC9D-43B0-9AA4-EAC1024EF088}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <OutputPath>bin\</OutputPath>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Portfish</RootNamespace>
+    <AssemblyName>PortfishNet45</AssemblyName>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <FileAlignment>512</FileAlignment>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Benchmark.cs" />
+    <Compile Include="Bitbase.cs" />
+    <Compile Include="Bitcount.cs" />
+    <Compile Include="Book.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="Endgame.cs" />
+    <Compile Include="Engine.cs" />
+    <Compile Include="Evaluate.cs" />
+    <Compile Include="History.cs" />
+    <Compile Include="Material.cs" />
+    <Compile Include="Movegen.cs" />
+    <Compile Include="MovePicker.cs" />
+    <Compile Include="ObjectBroker.cs" />
+    <Compile Include="PawnInfo.cs" />
+    <Compile Include="Plug.cs" />
+    <Compile Include="Position.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="RKISS.cs" />
+    <Compile Include="Search.cs" />
+    <Compile Include="Thread.cs" />
+    <Compile Include="Timeman.cs" />
+    <Compile Include="TT.cs" />
+    <Compile Include="Types.cs" />
+    <Compile Include="Uci.cs" />
+    <Compile Include="UciOptions.cs" />
+    <Compile Include="Utils.cs" />
+  </ItemGroup>
+</Project>
