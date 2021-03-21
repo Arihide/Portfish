@@ -335,49 +335,7 @@ namespace Portfish
         /// rated move, otherwise randomly chooses one, based on the move score.
         internal static Move probe(Position pos, string filename, bool pickBest)
         {
-#if WINDOWS_RT
-
-            #region DLL book (local)
-
-            if (bookNotExists) { return MoveC.MOVE_NONE; }
-
-            BookEntry e = new BookEntry();
-            UInt16 best = 0;
-            uint sum = 0;
-            Move move = MoveC.MOVE_NONE;
-            UInt64 key = book_key(pos);
-
-            using (Stream fs = typeof(Engine).GetTypeInfo().Assembly.GetManifestResourceStream("Portfish.book.bin"))
-            {
-                if (fs == null)
-                {
-                    bookNotExists = true;
-                    return MoveC.MOVE_NONE;
-                }
-                UInt64 size = (UInt64)(fs.Length / SIZE_OF_BOOKENTRY);
-                using (BinaryReader br = new BinaryReader(fs))
-                {
-                    binary_search(key, size, br);
-                    while (Read(ref e, br) && (e.key == key))
-                    {
-                        best = Math.Max(best, e.count);
-                        sum += e.count;
-
-                        // Choose book move according to its score. If a move has a very
-                        // high score it has higher probability to be choosen than a move
-                        // with lower score. Note that first entry is always chosen.
-                        if ((RKiss.rand() % sum < e.count)
-                            || (pickBest && e.count == best))
-                        {
-                            move = e.move;
-                        }
-                    }
-                }
-            }
-
-            #endregion
-
-#elif PORTABLE
+#if PORTABLE
 
             #region DLL book
 

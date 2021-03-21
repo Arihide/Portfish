@@ -122,9 +122,7 @@ namespace Portfish
         {
             int num_cpu;
 
-#if WINDOWS_RT
-            num_cpu = Environment.ProcessorCount;
-#elif PORTABLE
+#if PORTABLE
             num_cpu = Constants.NumberOfCPUs;
 #else
             num_cpu = Environment.ProcessorCount;
@@ -185,7 +183,7 @@ namespace Portfish
             this.Add("Cowardice", new UCIOption(idx++, 100, 0, 200, UCIOptionChanges.on_eval));
             this.Add("Min Split Depth", new UCIOption(idx++, msd, 4, 7, UCIOptionChanges.on_threads));
             this.Add("Max Threads per Split Point", new UCIOption(idx++, 5, 4, 8, UCIOptionChanges.on_threads));
-            this.Add("Threads", new UCIOption(idx++, cpus, 1, Constants.MAX_THREADS, UCIOptionChanges.on_threads));
+            this.Add("Threads", new UCIOption(idx++, 1, 1, Constants.MAX_THREADS, UCIOptionChanges.on_threads));
             this.Add("Use Sleeping Threads", new UCIOption(idx++, false, UCIOptionChanges.on_threads)); // changed to false
             this.Add("Hash", new UCIOption(idx++, 32, 4, 8192, null)); // UCIOptionChanges.on_hash_size)); // hack, init on thread
             this.Add("Clear Hash", new UCIOption(idx++, UCIOptionChanges.on_clear_hash));

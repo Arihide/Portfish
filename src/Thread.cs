@@ -25,9 +25,6 @@ using NodeType = System.Int32;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Runtime.CompilerServices;
-#if WINDOWS_RT
-using Windows.System.Threading;
-#endif
 
 namespace Portfish
 {
@@ -107,11 +104,7 @@ namespace Portfish
                 splitPoints[j] = new SplitPoint();
             }
 
-#if WINDOWS_RT
-            Windows.Foundation.IAsyncAction action = Windows.System.Threading.ThreadPool.RunAsync(delegate { StartThread(initEvent); }, WorkItemPriority.Normal);
-#else
             ThreadPool.QueueUserWorkItem(this.StartThread, initEvent);
-#endif
         }
 
         internal void StartThread(object state)
@@ -484,11 +477,8 @@ namespace Portfish
                 initEvents[i] = new ManualResetEvent(false);
             }
 
-#if WINDOWS_RT
-            Windows.Foundation.IAsyncAction action = Windows.System.Threading.ThreadPool.RunAsync(delegate { launch_threads(initEvents); }, WorkItemPriority.Normal);
-#else
             ThreadPool.QueueUserWorkItem(new WaitCallback(launch_threads), initEvents);
-#endif
+            
             WaitHandle.WaitAll(initEvents);
         }
 
